@@ -1,0 +1,22 @@
+.graphic {
+    background: #B2DFDB;
+}
+.graphic .rectangle {
+    stroke: #00695C;
+    fill-opacity: 0.4;
+    fill: #00695C;
+}
+.graphic .triangle {
+    stroke: #00695C;
+    fill-opacity: 0.4;
+    fill: #00695C;
+}
+.graphic .quarter {
+    stroke: #00695C;
+    fill-opacity: 0.4;
+    fill:#00695C;
+}
+.graphic svg {
+    height: 300px;
+    width: 300px;
+}

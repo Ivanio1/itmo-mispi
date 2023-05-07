@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="webapp" default="build">
+    <property file="build.properties"/>
+
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="lib/ant-contrib-1.0b3.jar"/>
+        </classpath>
+    </taskdef>
+
+    <path id="classpath.source">
+        <fileset dir="${lib}" includes="*.jar"/>
+    </path>
+
+    <target name="compile">
+        <mkdir dir="${compiled.classes}"/>
+        <javac srcdir="${main}" destdir="${compiled.classes}">
+            <classpath>
+                <path refid="classpath.source"/>
+                <pathelement location="${compiled.classes}"/>
+            </classpath>
+        </javac>
+        <copy todir="${compiled.classes}">
+            <fileset dir="${meta-inf}"/>
+        </copy>
+        <mkdir dir="${compiled.tests}"/>
+        <javac srcdir="${test}" destdir="${compiled.tests}">
+            <classpath>
+                <path refid="classpath.source"/>
+                <pathelement location="${compiled.classes}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="build" depends="compile">
+        <delete file="${file.jar}"/>
+        <mkdir dir="${webapp}"/>
+        <copy todir="${webapp}">
+            <fileset dir="${web}"/>
+        </copy>
+        <mkdir dir="${webInf.classes}"/>
+        <copy todir="${webInf.classes}">
+            <fileset dir="${compiled.classes}"/>
+        </copy>
+        <mkdir dir="${webInf.lib}"/>
+        <copy todir="${webInf.lib}">
+            <fileset dir="${lib}"/>
+        </copy>
+        <jar destfile="${file.jar}" basedir="${webapp}">
+            <manifest>
+                <attribute name="Version" value="1.0"/>
+                <attribute name="Author" value="danya"/>
+                <attribute name="Menage-Bean" value="PointsBean"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="check-condition">
+        <available file="${target}" type="dir" property="check.status"/>
+    </target>
+
+    <target name="clean" depends="check-condition">
+        <if>
+            <equals arg1="${check.status}" arg2="true"/>
+            <then>
+                <delete dir="${target}"/>
+            </then>
+        </if>
+    </target>
+
+    <target name="test" depends="build">
+        <mkdir dir="${reports}"/>
+        <junit fork="true" printsummary="on" failureproperty="tests.failed">
+            <formatter type="xml"/>
+            <classpath>
+                <path refid="classpath.source"/>
+                <pathelement location="${compiled.classes}"/>
+                <pathelement location="${compiled.tests}"/>
+            </classpath>
+            <batchtest todir="${reports}">
+                <fileset dir="${test2}" includes="*.java"/>
+            </batchtest>
+        </junit>
+    </target>
+
+
+
+</project>
