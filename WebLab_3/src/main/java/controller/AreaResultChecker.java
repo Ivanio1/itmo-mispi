@@ -33,8 +33,8 @@ public class AreaResultChecker {
 	
 	private static boolean inCircle(double x, double y, double r) {
 		return x >= 0 &&
-				y >= 0 &&
-				x * x + y * y <= r * r
+                y >= 0 &&
+                x * x + y * y <= r * r
 				;
 	}
 }

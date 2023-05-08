@@ -12,6 +12,7 @@
         <fileset dir="${lib}" includes="*.jar"/>
     </path>
 
+    <!--    компиляция исходных кодов проекта-->
     <target name="compile">
         <mkdir dir="${compiled.classes}"/>
         <javac srcdir="${main}" destdir="${compiled.classes}">
@@ -32,6 +33,7 @@
         </javac>
     </target>
 
+    <!--    компиляция исходных кодов проекта и их упаковка в исполняемый jar-архив-->
     <target name="build" depends="compile">
         <delete file="${file.jar}"/>
         <mkdir dir="${webapp}"/>
@@ -49,16 +51,19 @@
         <jar destfile="${file.jar}" basedir="${webapp}">
             <manifest>
                 <attribute name="Version" value="1.0"/>
-                <attribute name="Author" value="danya"/>
-                <attribute name="Menage-Bean" value="PointsBean"/>
+                <attribute name="Author" value="Ivan and Svyatoslav"/>
+                <attribute name="Manage-Bean" value="PointsBean"/>
             </manifest>
         </jar>
     </target>
 
+
+    <!-- проверка на наличие скомпилированных классов проекта и всех временных файлов -->
     <target name="check-condition">
         <available file="${target}" type="dir" property="check.status"/>
     </target>
 
+    <!-- удаление скомпилированных классов проекта и всех временных файлов (если они есть)-->
     <target name="clean" depends="check-condition">
         <if>
             <equals arg1="${check.status}" arg2="true"/>
@@ -68,21 +73,29 @@
         </if>
     </target>
 
+    <!--    запуск junit-тестов проекта-->
     <target name="test" depends="build">
         <mkdir dir="${reports}"/>
-        <junit fork="true" printsummary="on" failureproperty="tests.failed">
+        <echo message="--- TEST DONE ---"/>
+        <junit fork="true" printsummary="on">
             <formatter type="xml"/>
             <classpath>
                 <path refid="classpath.source"/>
                 <pathelement location="${compiled.classes}"/>
                 <pathelement location="${compiled.tests}"/>
             </classpath>
-            <batchtest todir="${reports}">
+            <batchtest todir="reports">
                 <fileset dir="${test2}" includes="*.java"/>
             </batchtest>
         </junit>
     </target>
 
+
+    <target name="native2ascii">
+        <mkdir dir="${ascii_locale}"/>
+        <native2ascii src="${native_locale}" dest="${ascii_locale}"
+                      includes="*.properties" ext=".properties"/>
+    </target>
 
 
 </project>
