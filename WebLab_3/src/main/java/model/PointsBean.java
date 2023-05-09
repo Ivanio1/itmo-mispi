@@ -19,9 +19,7 @@ import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
@@ -35,6 +33,7 @@ public class PointsBean implements Serializable {
     private int offset;
     private Point pointField = new Point();
     private Point pointGraphic = new Point();
+
     private model.DatabaseManager databaseManager= new model.DatabaseManager() {
         @Override
         public List<Point> getCollectionFromDataBase() {
