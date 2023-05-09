@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="webapp" default="build">
+    <property file="build.properties"/>
+
+    <!--    указываем путь до Анта-->
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="lib/ant-contrib-1.0b3.jar"/>
+        </classpath>
+    </taskdef>
+
+    <!-- Путь к дополнительным джарникам -->
+    <path id="classpath.source">
+        <fileset dir="${lib}" includes="*.jar"/>
+    </path>
+
+    <!--    компиляция исходных кодов проекта-->
+    <target name="compile">
+        <mkdir dir="${compiled.classes}"/>
+        <javac srcdir="${main}" destdir="${compiled.classes}">
+            <classpath>
+                <path refid="classpath.source"/>
+                <pathelement location="${compiled.classes}"/>
+            </classpath>
+        </javac>
+        <copy todir="${compiled.classes}">
+            <fileset dir="${meta-inf}"/>
+        </copy>
+        <mkdir dir="${compiled.tests}"/>
+        <javac srcdir="${test}" destdir="${compiled.tests}">
+            <classpath>
+                <path refid="classpath.source"/>
+                <pathelement location="${compiled.classes}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <!--    компиляция исходных кодов проекта и их упаковка в исполняемый jar-архив-->
+    <target name="build" depends="compile">
+        <delete file="${file.jar}"/>
+        <mkdir dir="${webapp}"/>
+        <copy todir="${webapp}">
+            <fileset dir="${web}"/>
+        </copy>
+        <mkdir dir="${webInf.classes}"/>
+        <copy todir="${webInf.classes}">
+            <fileset dir="${compiled.classes}"/>
+        </copy>
+        <mkdir dir="${webInf.lib}"/>
+        <copy todir="${webInf.lib}">
+            <fileset dir="${lib}"/>
+        </copy>
+        <jar destfile="${file.jar}" basedir="${webapp}">
+            <manifest>
+                <attribute name="Version" value="1.0"/>
+                <attribute name="Author" value="Ivan and Svyatoslav"/>
+                <attribute name="Manage-Bean" value="PointsBean"/>
+            </manifest>
+        </jar>
+    </target>
+
+
+    <!-- проверка на наличие скомпилированных классов проекта и всех временных файлов -->
+    <target name="check-condition">
+        <available file="${target}" type="dir" property="check.status"/>
+    </target>
+
+    <!-- удаление скомпилированных классов проекта и всех временных файлов (если они есть)-->
+    <target name="clean" depends="check-condition">
+        <if>
+            <equals arg1="${check.status}" arg2="true"/>
+            <then>
+                <delete dir="${target}"/>
+            </then>
+        </if>
+    </target>
+
+    <!--    запуск junit-тестов проекта-->
+    <target name="test" depends="build">
+        <mkdir dir="${reports}"/>
+        <echo message="--- TEST DONE ---"/>
+        <junit fork="true" printsummary="on">
+            <formatter type="xml"/>
+            <classpath>
+                <path refid="classpath.source"/>
+                <pathelement location="${compiled.classes}"/>
+                <pathelement location="${compiled.tests}"/>
+            </classpath>
+            <batchtest todir="reports">
+                <fileset dir="${test2}" includes="*.java"/>
+            </batchtest>
+        </junit>
+    </target>
+
+    <!-- Не доделано -->
+    <target name="native2ascii">
+        <mkdir dir="${ascii_locale}"/>
+        <native2ascii src="${native_locale}" dest="${ascii_locale}"
+                      includes="*.properties" ext=".properties"/>
+    </target>
+
+
+    <target name="history">
+        <trycatch>
+            <try>
+                <runtarget target="compile"/>
+                <echo message="--- NO ERRORS, COMPILE DONE ---"/>
+            </try>
+            <catch>
+                <exec executable="cmd" outputproperty="git_log_head">
+                    <arg value="/c"/>
+                    <arg value="git log --pretty=format:%h - %an, %ar : %s | head -1"/>
+                </exec>
+                <exec executable="cmd" outputproperty="git_log_tail">
+                    <arg value="/c"/>
+                    <arg value="git log --pretty=format:%h - %an, %ar : %s | tail -1"/>
+                </exec>
+                <if>
+                    <equals arg1="${git_log_head}" arg2="${git_log_tail}"/>
+                    <then>
+                        <echo message="I cannot build the first commit. Stop"/>
+                    </then>
+                    <else>
+                        <exec executable="cmd" output="diff">
+                            <arg value="/c"/>
+                            <arg value="git diff HEAD~1"/>
+                        </exec>
+                        <exec executable="cmd">
+                            <arg value="/c"/>
+                            <arg value="git reset HEAD~1 --hard"/>
+                        </exec>
+                        <runtarget target="history"/>
+                    </else>
+                </if>
+            </catch>
+        </trycatch>
+    </target>
+
+</project>
