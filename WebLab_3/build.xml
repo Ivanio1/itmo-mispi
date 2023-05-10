@@ -96,7 +96,7 @@
     <!-- преобразование native2ascii для копий файлов локализации -->
     <target name="native2ascii">
         <native2ascii encoding="${localization.encoding}" src="${localization.files.path}"
-                      dest="${ascii_locale}/resources" ext=".txt" includes="*resources*.*"/>
+                      dest="${ascii_locale}/resources" ext=".properties" includes="*resources*.*"/>
         <mkdir dir="${ascii_locale}"/>
         <copy todir="${ascii_locale}">
             <fileset dir="${ascii_locale}"/>
