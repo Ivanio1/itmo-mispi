@@ -17,7 +17,7 @@
     <!--    компиляция исходных кодов проекта-->
     <target name="compile">
         <mkdir dir="${compiled.classes}"/>
-        <javac srcdir="${main}" destdir="${compiled.classes}">
+        <javac srcdir="${main}" destdir="${compiled.classes}" encoding="UTF-8">
             <classpath>
                 <path refid="classpath.source"/>
                 <pathelement location="${compiled.classes}"/>
@@ -55,6 +55,7 @@
                 <attribute name="Version" value="1.0"/>
                 <attribute name="Author" value="Ivan and Svyatoslav"/>
                 <attribute name="Manage-Bean" value="PointsBean"/>
+                <!--  <attribute name="Main-Class" value="${main-class}"/>-->
             </manifest>
         </jar>
     </target>
@@ -92,13 +93,15 @@
         </junit>
     </target>
 
-    <!-- Не доделано -->
+    <!-- преобразование native2ascii для копий файлов локализации -->
     <target name="native2ascii">
+        <native2ascii encoding="${localization.encoding}" src="${localization.files.path}"
+                      dest="${ascii_locale}/resources" ext=".txt" includes="*resources*.*"/>
         <mkdir dir="${ascii_locale}"/>
-        <native2ascii src="${native_locale}" dest="${ascii_locale}"
-                      includes="*.properties" ext=".properties"/>
+        <copy todir="${ascii_locale}">
+            <fileset dir="${ascii_locale}"/>
+        </copy>
     </target>
-
 
     <!-- если проект не удаётся скомпилировать (цель compile), загружается предыдущая версия из репозитория git -->
     <target name="history">
