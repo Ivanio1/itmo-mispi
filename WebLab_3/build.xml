@@ -96,7 +96,7 @@
     <!-- преобразование native2ascii для копий файлов локализации -->
     <target name="native2ascii">
         <native2ascii encoding="${localization.encoding}" src="${localization.files.path}"
-                      dest="${ascii_locale}/resources" ext=".properties" includes="*resources*.*"/>
+                      dest="${ascii_locale}/resources" ext=".txt" includes="*resources*.*"/>
         <mkdir dir="${ascii_locale}"/>
         <copy todir="${ascii_locale}">
             <fileset dir="${ascii_locale}"/>
@@ -135,7 +135,7 @@
                 </exec>
             </then>
             <else>
-                <fail message="--- NO CHANGES ---"/>
+                <echo>No changes in files. Nothing to commit</echo>
             </else>
         </if>
 
@@ -160,6 +160,7 @@
                                     <arg value="HEAD~1"/>
                                 </exec>
                             </catch>
+                            <!-->Если компиляция прошла успешна, выходим с цикла<-->
                             <finally>
                                 <fail if="breakProperty"/>
                             </finally>
@@ -167,24 +168,25 @@
                     </sequential>
                 </for>
             </try>
-            <catch>
-                <echo>Finally</echo>
-            </catch>
-            <finally>
-                <if>
-                    <isset property="previous.commit"/>
-                    <then>
-                        <exec executable="git">
-                            <arg value="diff"/>
-                            <arg value="${previous.commit}"/>
-                            <redirector output="diff.txt" alwayslog="true"/>
-                        </exec>
-                    </then>
-                </if>
-                <echo>Original commit: ${current.commit}</echo>
-            </finally>
-        </trycatch>
-    </target>
+            <!-->Ловим ошибку при успешной компиляции<-->
+           <catch>
+               <echo>Finally</echo>
+           </catch>
+           <finally>
+               <if>
+                   <isset property="previous.commit"/>
+                   <then>
+                       <exec executable="git">
+                           <arg value="diff"/>
+                           <arg value="${previous.commit}"/>
+                           <redirector output="diff.txt" alwayslog="true"/>
+                       </exec>
+                   </then>
+               </if>
+               <echo>Original commit: ${current.commit}</echo>
+           </finally>
+       </trycatch>
+   </target>
 
 
 </project>
