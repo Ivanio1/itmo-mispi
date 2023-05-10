@@ -1,0 +1,27 @@
+mispi = миспи
+nice = отлично
+name = Соболев Иван, P32312
+variant = Вариант 3231205
+goToMain = На главную
+goToStart = На стартовую
+x = Выберите X:
+y = Выберите Y:
+r = Выберите R:
+clearAll = Очистить
+
+valueX = Значение в [-5..5]
+xNumber=X должно быть числом...
+xBetween = X должно быть числом между -5 и 5
+xRequired = Введите X
+
+valueR = Значение в [2..5]
+rNumber=R должно быть числом...
+rBetween = R должно быть числом между 2 and 5
+rRequired = Введите R
+
+Submit = Отправить
+Result =Результат
+Currenttime = Текущее время
+Executetime = Время выполнения(мкс)
+
+YReq = Введите Y
