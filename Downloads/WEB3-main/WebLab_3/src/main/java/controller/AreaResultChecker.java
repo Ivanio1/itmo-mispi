@@ -4,6 +4,7 @@ import model.Point;
 
 public class AreaResultChecker {
 	private AreaResultChecker() {
+
 	}
 	
 	public static boolean isPointInArea(Point point) {

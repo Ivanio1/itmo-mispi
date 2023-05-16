@@ -17,7 +17,7 @@
     <!--    компиляция исходных кодов проекта-->
     <target name="compile">
         <mkdir dir="${compiled.classes}"/>
-        <javac srcdir="${main}" destdir="${compiled.classes}">
+        <javac srcdir="${main}" destdir="${compiled.classes}" encoding="UTF-8">
             <classpath>
                 <path refid="classpath.source"/>
                 <pathelement location="${compiled.classes}"/>
@@ -52,11 +52,19 @@
         </copy>
         <jar destfile="${file.jar}" basedir="${webapp}">
             <manifest>
-                <attribute name="Version" value="1.0"/>
+                <attribute name="Version" value="${version}"/>
+                <attribute name="Author" value="Ivan and Svyatoslav"/>
+                <attribute name="Manage-Bean" value="PointsBean"/>
+                <!--  <attribute name="Main-Class" value="${main-class}"/>-->
+            </manifest>
+        </jar>
+        <war destfile="${file.war}" basedir="${webapp}">
+            <manifest>
+                <attribute name="Version" value="${version}"/>
                 <attribute name="Author" value="Ivan and Svyatoslav"/>
                 <attribute name="Manage-Bean" value="PointsBean"/>
             </manifest>
-        </jar>
+        </war>
     </target>
 
 
@@ -75,7 +83,7 @@
         </if>
     </target>
 
-    <!--    запуск junit-тестов проекта-->
+    <!--запуск junit-тестов проекта-->
     <target name="test" depends="build">
         <mkdir dir="${reports}"/>
         <echo message="--- TEST DONE ---"/>
@@ -92,48 +100,100 @@
         </junit>
     </target>
 
-    <!-- Не доделано -->
+    <!-- преобразование native2ascii для копий файлов локализации -->
     <target name="native2ascii">
+        <native2ascii encoding="${localization.encoding}" src="${localization.files.path}"
+                      dest="${ascii_locale}/resources" ext=".txt" includes="*resources*.*"/>
         <mkdir dir="${ascii_locale}"/>
-        <native2ascii src="${native_locale}" dest="${ascii_locale}"
-                      includes="*.properties" ext=".properties"/>
+        <copy todir="${ascii_locale}">
+            <fileset dir="${ascii_locale}"/>
+        </copy>
     </target>
 
-
+    <!-- если проект не удаётся скомпилировать (цель compile), загружается предыдущая версия из репозитория git -->
     <target name="history">
+        <exec executable="git" outputproperty="commits.count">
+            <arg value="rev-list"/>
+            <arg value="--count"/>
+            <arg value="HEAD"/>
+        </exec>
+
+        <exec executable="git" outputproperty="current.commit">
+            <arg value="rev-parse"/>
+            <arg value="HEAD"/>
+        </exec>
+
+        <exec executable="git" outputproperty="current.work_diff">
+            <arg value="diff"/>
+            <arg value="HEAD"/>
+        </exec>
+
+        <if>
+            <length string="${current.work_diff}" length="0" trim="true" when="greater"/>
+            <then>
+                <exec executable="git" >
+                    <arg value="add"/>
+                    <arg value="."/>
+                </exec>
+                <exec executable="git" >
+                    <arg value="commit"/>
+                    <arg value="-m"/>
+                    <arg value="New commit"/>
+                </exec>
+            </then>
+            <else>
+                <echo>No changes in files. Nothing to commit</echo>
+            </else>
+        </if>
+
         <trycatch>
             <try>
-                <runtarget target="compile"/>
-                <echo message="--- NO ERRORS, COMPILE DONE ---"/>
+                <for param="i" begin="1" end="${commits.count}">
+                    <sequential>
+                        <trycatch>
+                            <try>
+                                <antcall target="compile"/>
+                                <property name="breakProperty" value="true"/>
+                            </try>
+                            <catch>
+                                <exec executable="git" outputproperty="previous.commit">
+                                    <arg value="rev-parse"/>
+                                    <arg value="HEAD"/>
+                                </exec>
+                                <echo>Error in compile target</echo>
+                                <exec executable="git">
+                                    <arg value="reset"/>
+                                    <arg value="--hard"/>
+                                    <arg value="HEAD~1"/>
+                                </exec>
+                            </catch>
+                            <!-->Если компиляция прошла успешна, выходим с цикла<-->
+                            <finally>
+                                <fail if="breakProperty"/>
+                            </finally>
+                        </trycatch>
+                    </sequential>
+                </for>
             </try>
-            <catch>
-                <exec executable="cmd" outputproperty="git_log_head">
-                    <arg value="/c"/>
-                    <arg value="git log --pretty=format:%h - %an, %ar : %s | head -1"/>
-                </exec>
-                <exec executable="cmd" outputproperty="git_log_tail">
-                    <arg value="/c"/>
-                    <arg value="git log --pretty=format:%h - %an, %ar : %s | tail -1"/>
-                </exec>
-                <if>
-                    <equals arg1="${git_log_head}" arg2="${git_log_tail}"/>
-                    <then>
-                        <echo message="I cannot build the first commit. Stop"/>
-                    </then>
-                    <else>
-                        <exec executable="cmd" output="diff">
-                            <arg value="/c"/>
-                            <arg value="git diff HEAD~1"/>
-                        </exec>
-                        <exec executable="cmd">
-                            <arg value="/c"/>
-                            <arg value="git reset HEAD~1 --hard"/>
-                        </exec>
-                        <runtarget target="history"/>
-                    </else>
-                </if>
-            </catch>
-        </trycatch>
-    </target>
+            <!-->Ловим ошибку при успешной компиляции<-->
+           <catch>
+               <echo>Finally</echo>
+           </catch>
+           <finally>
+               <if>
+                   <isset property="previous.commit"/>
+                   <then>
+                       <exec executable="git">
+                           <arg value="diff"/>
+                           <arg value="${previous.commit}"/>
+                           <redirector output="diff.txt" alwayslog="true"/>
+                       </exec>
+                   </then>
+               </if>
+               <echo>Original commit: ${current.commit}</echo>
+           </finally>
+       </trycatch>
+   </target>
+
 
 </project>

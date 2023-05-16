@@ -1,0 +1,98 @@
+diff --git a/diff.txt b/diff.txt
+index 2b7eb3e..08e28c8 100644
+--- a/diff.txt
++++ b/diff.txt
+@@ -1,12 +1,67 @@
+-diff --git a/src/main/java/controller/AreaResultChecker.java b/src/main/java/controller/AreaResultChecker.java
+-index deb3802..9611f9c 100644
+---- a/src/main/java/controller/AreaResultChecker.java
+-+++ b/src/main/java/controller/AreaResultChecker.java
+-@@ -1,6 +1,6 @@
+- package controller;
+- 
+--//import model.Point;
+-+import model.Point;
+- 
+- public class AreaResultChecker {
+- 	private AreaResultChecker() {
++diff --git a/target/classes/ascii_localization/resources/resources_test_ru.txt b/target/classes/ascii_localization/resources/resources_test_ru.txt
++deleted file mode 100644
++index 6b49225..0000000
++--- a/target/classes/ascii_localization/resources/resources_test_ru.txt
+++++ /dev/null
++@@ -1,27 +0,0 @@
++-mispi = \u043c\u0438\u0441\u043f\u0438
++-nice = \u043e\u0442\u043b\u0438\u0447\u043d\u043e
++-name = \u0421\u043e\u0431\u043e\u043b\u0435\u0432 \u0418\u0432\u0430\u043d, P32312
++-variant = \u0412\u0430\u0440\u0438\u0430\u043d\u0442 3231205
++-goToMain = \u041d\u0430 \u0433\u043b\u0430\u0432\u043d\u0443\u044e
++-goToStart = \u041d\u0430 \u0441\u0442\u0430\u0440\u0442\u043e\u0432\u0443\u044e
++-x = \u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 X:
++-y = \u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 Y:
++-r = \u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 R:
++-clearAll = \u041e\u0447\u0438\u0441\u0442\u0438\u0442\u044c
++-
++-valueX = \u0417\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0432 [-5..5]
++-xNumber=X \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \u0447\u0438\u0441\u043b\u043e\u043c...
++-xBetween = X \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \u0447\u0438\u0441\u043b\u043e\u043c \u043c\u0435\u0436\u0434\u0443 -5 \u0438 5
++-xRequired = \u0412\u0432\u0435\u0434\u0438\u0442\u0435 X
++-
++-valueR = \u0417\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0432 [2..5]
++-rNumber=R \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \u0447\u0438\u0441\u043b\u043e\u043c...
++-rBetween = R \u0434\u043e\u043b\u0436\u043d\u043e \u0431\u044b\u0442\u044c \u0447\u0438\u0441\u043b\u043e\u043c \u043c\u0435\u0436\u0434\u0443 2 and 5
++-rRequired = \u0412\u0432\u0435\u0434\u0438\u0442\u0435 R
++-
++-Submit = \u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c
++-Result =\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442
++-Currenttime = \u0422\u0435\u043a\u0443\u0449\u0435\u0435 \u0432\u0440\u0435\u043c\u044f
++-Executetime = \u0412\u0440\u0435\u043c\u044f \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f(\u043c\u043a\u0441)
++-
++-YReq = \u0412\u0432\u0435\u0434\u0438\u0442\u0435 Y
++diff --git a/target/classes/resources_test_ru.txt b/target/classes/resources_test_ru.txt
++deleted file mode 100644
++index 7a4285d..0000000
++--- a/target/classes/resources_test_ru.txt
+++++ /dev/null
++@@ -1,27 +0,0 @@
++-mispi = миспи
++-nice = отлично
++-name = Соболев Иван, P32312
++-variant = Вариант 3231205
++-goToMain = На главную
++-goToStart = На стартовую
++-x = Выберите X:
++-y = Выберите Y:
++-r = Выберите R:
++-clearAll = Очистить
++-
++-valueX = Значение в [-5..5]
++-xNumber=X должно быть числом...
++-xBetween = X должно быть числом между -5 и 5
++-xRequired = Введите X
++-
++-valueR = Значение в [2..5]
++-rNumber=R должно быть числом...
++-rBetween = R должно быть числом между 2 and 5
++-rRequired = Введите R
++-
++-Submit = Отправить
++-Result =Результат
++-Currenttime = Текущее время
++-Executetime = Время выполнения(мкс)
++-
++-YReq = Введите Y
++\ No newline at end of file
+diff --git a/src/main/java/controller/AreaResultChecker.java b/src/main/java/controller/AreaResultChecker.java
+index deb3802..9611f9c 100644
+--- a/src/main/java/controller/AreaResultChecker.java
++++ b/src/main/java/controller/AreaResultChecker.java
+@@ -1,6 +1,6 @@
+ package controller;
+ 
+-//import model.Point;
++import model.Point;
+ 
+ public class AreaResultChecker {
+ 	private AreaResultChecker() {
+error: short read while indexing diff.txt
+error: short read while indexing diff.txt
