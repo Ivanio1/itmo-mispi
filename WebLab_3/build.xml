@@ -52,12 +52,19 @@
         </copy>
         <jar destfile="${file.jar}" basedir="${webapp}">
             <manifest>
-                <attribute name="Version" value="1.0"/>
+                <attribute name="Version" value="${version}"/>
                 <attribute name="Author" value="Ivan and Svyatoslav"/>
                 <attribute name="Manage-Bean" value="PointsBean"/>
                 <!--  <attribute name="Main-Class" value="${main-class}"/>-->
             </manifest>
         </jar>
+        <war destfile="${file.war}" basedir="${webapp}">
+            <manifest>
+                <attribute name="Version" value="${version}"/>
+                <attribute name="Author" value="Ivan and Svyatoslav"/>
+                <attribute name="Manage-Bean" value="PointsBean"/>
+            </manifest>
+        </war>
     </target>
 
 
@@ -96,7 +103,7 @@
     <!-- преобразование native2ascii для копий файлов локализации -->
     <target name="native2ascii">
         <native2ascii encoding="${localization.encoding}" src="${localization.files.path}"
-                      dest="${ascii_locale}/resources" ext=".txt" includes="*resources*.*"/>
+                      dest="${ascii_locale}/resources" ext=".properties" includes="*resources*.*"/>
         <mkdir dir="${ascii_locale}"/>
         <copy todir="${ascii_locale}">
             <fileset dir="${ascii_locale}"/>
@@ -149,6 +156,7 @@
                                 <property name="breakProperty" value="true"/>
                             </try>
                             <catch>
+                                <var name="previous.commit" unset="true"/>
                                 <exec executable="git" outputproperty="previous.commit">
                                     <arg value="rev-parse"/>
                                     <arg value="HEAD"/>
@@ -169,24 +177,24 @@
                 </for>
             </try>
             <!-->Ловим ошибку при успешной компиляции<-->
-           <catch>
-               <echo>Finally</echo>
-           </catch>
-           <finally>
-               <if>
-                   <isset property="previous.commit"/>
-                   <then>
-                       <exec executable="git">
-                           <arg value="diff"/>
-                           <arg value="${previous.commit}"/>
-                           <redirector output="diff.txt" alwayslog="true"/>
-                       </exec>
-                   </then>
-               </if>
-               <echo>Original commit: ${current.commit}</echo>
-           </finally>
-       </trycatch>
-   </target>
+            <catch>
+                <echo>Finally</echo>
+            </catch>
+            <finally>
+                <if>
+                    <isset property="previous.commit"/>
+                    <then>
+                        <exec executable="git">
+                            <arg value="diff"/>
+                            <arg value="${previous.commit}"/>
+                            <redirector output="diff.txt"/>
+                        </exec>
+                    </then>
+                </if>
+                <echo>Original commit: ${current.commit}</echo>
+            </finally>
+        </trycatch>
+    </target>
 
 
 </project>
