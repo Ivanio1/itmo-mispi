@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC
+        "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:p="http://primefaces.org/ui"
+
+>
+<h:head>
+    <title>Web3-main</title>
+    <link href="../resources/img/face_pensive_icon_227321.png" rel="shortcut icon" type="image/x-icon"/>
+    <link rel="stylesheet" href="../resources/styles/graphic.css"/>
+    <link rel="stylesheet" href="../resources/styles/style.css"/>
+    <script type="text/javascript" src="../resources/scripts/jquery.js"></script>
+</h:head>
+
+<h:body styleClass="h-body">
+    <script src="../resources/scripts/clock2.js" type="text/javascript"></script>
+    <div class="page">
+        <div class="graphic">
+            <svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+                <line x1="0" y1="150" x2="300" y2="150" stroke="#000720"></line>
+                <line x1="150" y1="0" x2="150" y2="300" stroke="#000720"></line>
+                <line x1="270" y1="148" x2="270" y2="152" stroke="#000720"></line>
+                <text x="265" y="140">#{pointsBean.pointField.r}</text>
+                <line x1="210" y1="148" x2="210" y2="152" stroke="#000720"></line>
+                <text x="200" y="140">#{pointsBean.pointField.r/2}</text>
+                <line x1="90" y1="148" x2="90" y2="152" stroke="#000720"></line>
+                <text x="75" y="140">#{-pointsBean.pointField.r/2}</text>
+                <line x1="30" y1="148" x2="30" y2="152" stroke="#000720"></line>
+                <text x="20" y="140">#{-pointsBean.pointField.r}</text>
+                <line x1="148" y1="30" x2="152" y2="30" stroke="#000720"></line>
+                <text x="156" y="35">#{pointsBean.pointField.r}</text>
+                <line x1="148" y1="90" x2="152" y2="90" stroke="#000720"></line>
+                <text x="156" y="95">#{pointsBean.pointField.r/2}</text>
+                <line x1="148" y1="210" x2="152" y2="210" stroke="#000720"></line>
+                <text x="156" y="215">#{-pointsBean.pointField.r/2}</text>
+                <line x1="148" y1="270" x2="152" y2="270" stroke="#000720"></line>
+                <text x="156" y="275">#{-pointsBean.pointField.r}</text>
+                <polygon points="300,150 295,155 295, 145" fill="#000720" stroke="#000720"></polygon>
+                <polygon points="150,0 145,5 155,5" fill="#000720" stroke="#000720"></polygon>
+                <!--RECTANGLE-->
+                <rect class="rectangle" x="90" y="30" width="60" height="120"></rect>
+                <!--TRIANGLE-->
+                <polygon class="triangle" points="150,150 30,150 150,270"></polygon>
+                <!--QUARTER-->
+                <path class="quarter"
+                      d="M 150 30 A 125 125, 90, 0, 1, 270 150 L 150 150 Z"></path>
+                <!--DOT-->
+                <circle id="pointer" r="5" cx="150" cy="150" fill-opacity="0.7" fill="white" stroke="firebrick"
+                        visibility="hidden"></circle>
+            </svg>
+        </div>
+
+        <div class="starter">
+            <h:link outcome="starter">#{localizationBean.startPage}</h:link>
+        </div>
+
+        <div class="card">
+
+            <div class="form">
+                <h:form id="form">
+                    <div class="x-value">
+                        <p>#{localizationBean.x}</p>
+                        <h:inputText styleClass="my-input" style="color: black"
+                                     id="x" name="x" value="#{pointsBean.pointField.x}" a:placeholder="#{localizationBean.valueX}"
+                                     converterMessage="#{localizationBean.xNumber}"
+                                     validatorMessage="#{localizationBean.xBetween}"
+                                     required="true" requiredMessage="#{localizationBean.xRequired}" maxlength="6"
+                                     onkeyup="this.value = this.value.replace(/[^0-9\.\-]/g, '')">
+                            <f:validateDoubleRange minimum="-5" maximum="5"/>
+                        </h:inputText>
+                        <h:message for="x" style="color: red"/>
+                        <div class="invalid-y d-none h5" style="color: red"></div>
+                    </div>
+                    <div class="y-value">
+                        <p>#{localizationBean.y}</p>
+                        <h:selectOneRadio id="y"
+                                          value="#{pointsBean.pointField.y}"
+                                          required="true"
+                                          requiredMessage="#{localizationBean.YReq}">
+                            <f:selectItem itemValue="-5" itemLabel="-5"/>
+                            <f:selectItem itemValue="-4" itemLabel="-4"/>
+                            <f:selectItem itemValue="-3" itemLabel="-3"/>
+                            <f:selectItem itemValue="-2" itemLabel="-2"/>
+                            <f:selectItem itemValue="-1" itemLabel="-1"/>
+                            <f:selectItem itemValue="0" itemLabel="0"/>
+                            <f:selectItem itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="3" itemLabel="3"/>
+                        </h:selectOneRadio>
+                        <h:message for="y" style="color: red"/>
+
+                    </div>
+                    <div class="r-value">
+                        <p>#{localizationBean.r}</p>
+                        <h:inputText styleClass="my-input" style="color: black"
+                                     id="R-field" name="r" value="#{pointsBean.pointField.r}"
+                                     a:placeholder="#{localizationBean.valueR}"
+                                     converterMessage="#{localizationBean.rNumber}"
+                                     validatorMessage="#{localizationBean.rBetween}"
+                                     required="true" requiredMessage="#{localizationBean.rRequired}" maxlength="4"
+                                     onkeypress="changeR()"
+                                     onkeyup="this.value = this.value.replace(/[^0-9\.]/g, '')">
+                            <f:validateDoubleRange minimum="2" maximum="5"/>
+                        </h:inputText>
+                        <h:message id="message-r" for="R-field" style="color: red"/>
+                        <div class="invalid-y d-none h5" style="color: red"></div>
+                        <h:inputText styleClass="time" value="#{pointsBean.pointField.curr_time}"
+                                     style="color: black; display: none"/>
+                    </div>
+                    <br/>
+                    <div>
+
+                        <h:commandButton styleClass="my-button" type="submit" value="#{localizationBean.submit}" id="submit-button"
+                                         style=""
+                                         onmouseup="clickSubmitButton()" onmousedown="offset()">
+                        </h:commandButton>
+
+
+
+                        <h:commandButton
+                                style="display: none"
+                                type="submit"
+                                styleClass="hidden-submit-button"
+
+                                action="#{pointsBean.submitFieldPoints}"
+                        />
+                        <h:commandButton
+                                style="display: none"
+                                type="submit"
+                                styleClass="hidden-submit-butt"
+                                action="#{pointsBean.submitR}"
+                        />
+
+                    </div>
+
+                </h:form>
+                <br/>
+                <h:form>
+                    <h:commandButton styleClass="my-button" type="submit" value="#{localizationBean.clearAll}"
+                                     action="#{pointsBean.clear}">
+                    </h:commandButton>
+                </h:form>
+
+
+            </div>
+
+            <div class="hiddenForm" style="display: none">
+                <h:form>
+                    <h:inputText styleClass="x-hidden" value="#{pointsBean.pointGraphic.x}" style="color: black"/>
+                    <h:inputText styleClass="y-hidden" value="#{pointsBean.pointGraphic.y}" style="color: black"/>
+                    <h:inputText styleClass="r-hidden" value="#{pointsBean.pointGraphic.r}" style="color: black"/>
+                    <h:inputText styleClass="time-hidden" id="time-hidden" value="#{pointsBean.pointGraphic.curr_time}"
+                                 style="color: black"/>
+                    <h:inputText styleClass="offset-hidden" id="offset-hidden" value="#{pointsBean.offset}"
+                                 onclick="offset()" style="color: black"/>
+                    <h:commandButton
+                            type="submit"
+                            styleClass="hidden-submit-btn"
+                            action="#{pointsBean.submitGraphicPoints}"
+                    />
+                </h:form>
+            </div>
+        </div>
+        <div class="table">
+            <div>Results</div>
+            <h:dataTable id="result-table" value="#{pointsBean.pointsCollection}" var="point">
+                <f:event type="preRenderView" listener="#{pointsBean.uploadPoints}"/>
+                <h:column>
+                    <f:facet name="header">X</f:facet>
+                    ${point.x}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Y</f:facet>
+                    ${point.y}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">R</f:facet>
+                    ${point.r}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{localizationBean.result}</f:facet>
+                    ${point.result ? "Hit" : "None"}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header" id="final_time" style="">#{localizationBean.currtime}</f:facet>
+                    ${pointsBean.getDateOffset(pointsBean.offset,point.curr_time)}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{localizationBean.extime}</f:facet>
+                    ${point.ex_time}
+                </h:column>
+            </h:dataTable>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../resources/scripts/setPointer.js"></script>
+    <script type="text/javascript" src="../resources/scripts/button-click.js"></script>
+</h:body>
+
+</html>

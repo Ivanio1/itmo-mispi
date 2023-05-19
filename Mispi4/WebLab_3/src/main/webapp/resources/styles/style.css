@@ -1,0 +1,106 @@
+
+* {
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    font-weight: normal;
+    color: white;
+}
+
+h2, h3, p {
+    color: white;
+}
+
+a {
+    color: black;
+}
+
+body {
+    background: #B2DFDB;
+
+}
+#header {
+    font-family: "Andale Mono", sans-serif;
+    font-size: 20px;
+    color: white;
+    height: 50px;
+    padding: 10px;
+    background-color: #00695C;
+}
+#student-info{
+    float: right
+}
+#variant-info{
+    float: left;
+}
+header {
+    font-size: 0.5em;
+}
+
+.slider-wrapper {
+    width: 350px;
+    margin-bottom: 10px;
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    background: #B2DFDB;
+}
+
+.my-input {
+    border-width: 0;
+    border-radius: 25px;
+    background: #B2DFDB;
+}
+
+.y-button {
+    background: #00695C;
+    color: white;
+    border-radius: 3px;
+    margin: 0 5px;
+    border-width: 0;
+}
+
+.slider-input {
+    border-width: 0;
+    border-radius: 25px;
+    width: 60px;
+    margin-bottom: 10px;
+}
+
+.my-button {
+    background: #00695C;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 25px;
+    margin: 0 10px;
+    min-width: 150px;
+    height: 40px;
+    border-width: 0;
+}
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: #009688;
+    padding: 25px;
+    margin: 10px;
+    border-radius: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.starter-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: center;
+    justify-content: center;
+}
+
+.table {
+    background: #009688;
+}

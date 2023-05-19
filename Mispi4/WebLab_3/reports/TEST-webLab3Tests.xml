@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="LAPTOP-8ANVIHN8" name="webLab3Tests" skipped="0" tests="12" time="0.574" timestamp="2023-05-10T06:44:23">
+  <properties>
+    <property name="webapp" value="./target/webapp" />
+    <property name="ant.library.dir" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.3\lib\ant\lib" />
+    <property name="reports" value="reports" />
+    <property name="ant.file.type" value="file" />
+    <property name="lib" value="./lib" />
+    <property name="java.specification.version" value="17" />
+    <property name="ant.project.name" value="webapp" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="sun.jnu.encoding" value="Cp1251" />
+    <property name="webInf.classes" value="./target/webapp/WEB-INF/classes" />
+    <property name="ant.file.type.webapp" value="file" />
+    <property name="java.class.path" value="C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\ant-contrib-1.0b3.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\byte-buddy-1.12.8.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\hamcrest-core-1.3.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\hibernate-commons-annotations-6.0.0.CR1.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\hibernate-core-5.0.1.Final.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\hibernate-core-6.0.0.Final.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\hibernate-ehcache-5.2.6.Final.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\hibernate-entitymanager-5.0.1.Final.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\hibernate-jpa-2.0-api-1.0.1.Final.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\hibernate-jpa-2.1-api-1.0.0.Final.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\javaee-api-7.0.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\javassist-3.18.1-GA.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\javax.faces-2.2.10.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\javax.servlet-api-3.0.1.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\jboss-logging-3.4.3.Final.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\jsf-api-2.2.18.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\jsf-impl-2.2.18.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\jsoup-1.14.3.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\jsp-api-2.0.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\jstl-1.2.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\junit-4.12.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\lombok-1.18.26.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\postgresql-42.2.14.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\primefaces-5.3.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\slf4j-api-1.7.7.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\txw2-3.0.2.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\lib\xml-apis-1.0.b2.jar;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\target\classes;C:\Users\Asus\Downloads\WEB3-main\WebLab_3\target\tests;C:\Program Files\JetBrains\IntelliJ IDEA 2021.3\lib\ant\lib\ant-launcher.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2021.3\lib\ant\lib\ant.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2021.3\lib\ant\lib\ant-junit.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2021.3\lib\ant\lib\ant-junit4.jar" />
+    <property name="main" value="./src/main" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="meta-inf" value="./src/main/resources" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="user.variant" value="" />
+    <property name="java.vendor.url" value="https://java.oracle.com/" />
+    <property name="java.vm.specification.version" value="17" />
+    <property name="os.name" value="Windows 10" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="user.country" value="RU" />
+    <property name="compiled.tests" value="./target/tests" />
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17\bin" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner webLab3Tests skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Asus\Downloads\WEB3-main\WebLab_3\reports\TEST-webLab3Tests.xml crashfile=C:\Users\Asus\Downloads\WEB3-main\WebLab_3\junitvmwatcher2539517999298526444.properties propsfile=C:\Users\Asus\Downloads\WEB3-main\WebLab_3\junit17803746322771666372.properties" />
+    <property name="ant.file.webapp" value="C:\Users\Asus\Downloads\WEB3-main\WebLab_3\build.xml" />
+    <property name="jdk.debug" value="release" />
+    <property name="test" value="./src/test" />
+    <property name="localization.files.path" value="src/main/resources" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="user.home" value="C:\Users\Asus" />
+    <property name="user.language" value="ru" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="java.version.date" value="2021-09-14" />
+    <property name="java.home" value="C:\Program Files\Java\jdk-17" />
+    <property name="basedir" value="C:\Users\Asus\Downloads\WEB3-main\WebLab_3" />
+    <property name="file.separator" value="\" />
+    <property name="java.vm.compressedOopsMode" value="32-bit" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="ant.java.version" value="17" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="localization.encoding" value="UTF-8" />
+    <property name="file.jar" value="./target/webapp.jar" />
+    <property name="user.script" value="" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="java.runtime.version" value="17+35-LTS-2724" />
+    <property name="user.name" value="Asus" />
+    <property name="ant.file" value="C:\Users\Asus\Downloads\WEB3-main\WebLab_3\build.xml" />
+    <property name="path.separator" value=";" />
+    <property name="os.version" value="10.0" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="file.encoding" value="Cp1251" />
+    <property name="ant.project.invoked-targets" value="test" />
+    <property name="web" value="./src/main/webapp" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="ant.core.lib" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.3\lib\ant\lib\ant.jar" />
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/" />
+    <property name="java.io.tmpdir" value="C:\Users\Asus\AppData\Local\Temp\" />
+    <property name="webInf.lib" value="./target/webapp/WEB-INF/lib" />
+    <property name="java.version" value="17" />
+    <property name="user.dir" value="C:\Users\Asus\Downloads\WEB3-main\WebLab_3" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.home" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.3\lib\ant" />
+    <property name="ascii_locale" value="src/main/resources/ascii_localization" />
+    <property name="sun.os.patch.level" value="" />
+    <property name="target" value="./target" />
+    <property name="native.encoding" value="Cp1251" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.10.5 compiled on July 10 2018" />
+    <property name="test2" value="./src/test/java" />
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-17\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\dotnet\;C:\Program Files\MiKTeX\miktex\bin\x64\;C:\Program Files (x86)\dotnet\;C:\TDM-GCC-32\bin;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;C;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Git\cmd;C:\Users\Asus\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\Asus\AppData\Local\Programs\Python\Python310\;C:\Users\Asus\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\Asus\AppData\Local\Programs\Python\Python38\;C:\Users\Asus\AppData\Local\Programs\Python\Launcher\;C:\Users\Asus\AppData\Local\Microsoft\WindowsApps;C:\Users\Asus\AppData\Local\Programs\MiKTeX\miktex\bin\x64\;C:\Users\Asus\AppData\Roaming\npm;;." />
+    <property name="java.vm.info" value="mixed mode, sharing" />
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="java.vm.version" value="17+35-LTS-2724" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="compiled.classes" value="./target/classes" />
+    <property name="java.class.version" value="61.0" />
+    <property name="ant.project.default-target" value="build" />
+  </properties>
+  <testcase classname="webLab3Tests" name="checkFourthQuadrant" time="0.178" />
+  <testcase classname="webLab3Tests" name="addPoint" time="0.012" />
+  <testcase classname="webLab3Tests" name="testAxis" time="0.003" />
+  <testcase classname="webLab3Tests" name="removePoints" time="0.001" />
+  <testcase classname="webLab3Tests" name="checkThirdQuadrant" time="0.124" />
+  <testcase classname="webLab3Tests" name="randomPoint" time="0.002" />
+  <testcase classname="webLab3Tests" name="nullPointFields" time="0.001" />
+  <testcase classname="webLab3Tests" name="getPoints" time="0.001" />
+  <testcase classname="webLab3Tests" name="checkFirstQuadrant" time="0.076" />
+  <testcase classname="webLab3Tests" name="checkValidPoint" time="0.004" />
+  <testcase classname="webLab3Tests" name="checkPointCreating" time="0.001" />
+  <testcase classname="webLab3Tests" name="checkSecondQuadrant" time="0.064" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xml:lang="en"
+      lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+<f:view>
+    <h:head>
+        <title>Web3-start</title>
+        <link href="../resources/img/face_pensive_icon_227321.png" rel="shortcut icon" type="image/x-icon"/>
+        <link rel="stylesheet" href="../resources/styles/style.css"/>
+    </h:head>
+
+    <h:body>
+    <div id="header">
+        <span id="variant-info" >#{localizationBean.variant}</span>
+        <span id="student-info">#{localizationBean.name}</span>
+    </div>
+    <div class="page">
+        <div class="card">
+            <div align="center">
+                <canvas id="clock" title="clock" width="300px" height="300px" style="padding-top: 25px"/>
+            </div>
+            <div id="time-container"></div>
+            <script src="../resources/scripts/clock.js" type="text/javascript"></script>
+            <h:link outcome="main">#{localizationBean.mainPage}</h:link>
+        </div>
+    </div>
+
+    </h:body>
+</f:view>
+
+</html>

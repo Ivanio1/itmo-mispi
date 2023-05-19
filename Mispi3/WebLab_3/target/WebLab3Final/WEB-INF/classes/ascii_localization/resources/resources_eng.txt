@@ -1,0 +1,27 @@
+mispi = mispi
+nice = nice
+name = Sobolev Ivan, P32312
+variant = Variant 3231205
+goToMain = Go to main page
+goToStart = Go to starter page
+x = Choose X:
+y = Choose Y:
+r = Choose R:
+clearAll = Clear All
+
+valueX = Value in [-5..5]
+xNumber=X must be number...
+xBetween = X must be number between -5 and 5 inclusive
+xRequired = X is required
+
+valueR = Value in [2..5]
+rNumber=R must be number...
+rBetween = R must be number between 2 and 5 inclusive
+rRequired = R is required
+
+Submit = Submit
+Result =Result
+Currenttime = Current time
+Executetime = Execute time(mcs)
+
+YReq = Y is required

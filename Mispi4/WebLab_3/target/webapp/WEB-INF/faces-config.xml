@@ -1,0 +1,45 @@
+<faces-config
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+        version="2.0">
+
+    <managed-bean>
+        <managed-bean-name>pointsBean</managed-bean-name>
+        <managed-bean-class>model.PointsBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>localizationBean</managed-bean-name>
+        <managed-bean-class>model.LocalizationBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>country</property-name>
+            <value>RU</value>
+        </managed-property>
+        <managed-property>
+            <property-name>language</property-name>
+            <value>ru</value>
+        </managed-property>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>../views/starter.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>main</from-outcome>
+            <to-view-id>../views/main.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>../views/main.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>starter</from-outcome>
+            <to-view-id>../views/starter.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
