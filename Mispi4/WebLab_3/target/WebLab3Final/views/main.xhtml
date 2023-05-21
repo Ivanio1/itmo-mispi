@@ -56,6 +56,13 @@
                 <circle id="pointer" r="5" cx="150" cy="150" fill-opacity="0.7" fill="white" stroke="firebrick"
                         visibility="hidden"></circle>
             </svg>
+            <div><p style="color: black">
+                Всего точек - #{pointsBean.shots} Попаданий - #{pointsBean.hits}
+            </p>
+                <p style="color: black"> Площадь фигуры - #{pointsBean.square}</p>
+                <p style="color: black">
+                    #{pointsBean.message}
+                </p></div>
         </div>
 
         <div class="starter">
@@ -69,7 +76,8 @@
                     <div class="x-value">
                         <p>#{localizationBean.x}</p>
                         <h:inputText styleClass="my-input" style="color: black"
-                                     id="x" name="x" value="#{pointsBean.pointField.x}" a:placeholder="#{localizationBean.valueX}"
+                                     id="x" name="x" value="#{pointsBean.pointField.x}"
+                                     a:placeholder="#{localizationBean.valueX}"
                                      converterMessage="#{localizationBean.xNumber}"
                                      validatorMessage="#{localizationBean.xBetween}"
                                      required="true" requiredMessage="#{localizationBean.xRequired}" maxlength="6"
@@ -118,11 +126,11 @@
                     <br/>
                     <div>
 
-                        <h:commandButton styleClass="my-button" type="submit" value="#{localizationBean.submit}" id="submit-button"
+                        <h:commandButton styleClass="my-button" type="submit" value="#{localizationBean.submit}"
+                                         id="submit-button"
                                          style=""
                                          onmouseup="clickSubmitButton()" onmousedown="offset()">
                         </h:commandButton>
-
 
 
                         <h:commandButton

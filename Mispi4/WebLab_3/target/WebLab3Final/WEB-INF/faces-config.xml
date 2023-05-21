@@ -8,13 +8,13 @@
     <managed-bean>
         <managed-bean-name>pointsBean</managed-bean-name>
         <managed-bean-class>model.PointsBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
 
     <managed-bean>
         <managed-bean-name>localizationBean</managed-bean-name>
         <managed-bean-class>model.LocalizationBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>application</managed-bean-scope>
         <managed-property>
             <property-name>country</property-name>
             <value>RU</value>
