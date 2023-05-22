@@ -65,9 +65,9 @@ public class PointsBean implements Serializable {
         countHits.setCountHits(hits);
 
         if (pointField.getR() != null) {
-            squareCalc.setRadius(pointField.getR());
+            squareCalc.setR(pointField.getR());
         } else {
-            squareCalc.setRadius(0);
+            squareCalc.setR(0);
         }
         DecimalFormat df = new DecimalFormat("#.###");
         square = df.format(squareCalc.calculateArea());

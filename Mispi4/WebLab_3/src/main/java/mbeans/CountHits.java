@@ -41,11 +41,6 @@ public class CountHits extends NotificationBroadcasterSupport implements CountHi
         }
     }
 
-    @Override
-    public void clearShot() {
-        countShots = 0;
-        countHits = 0;
-    }
 
     @Override
     public int getCountShots() {
@@ -57,12 +52,10 @@ public class CountHits extends NotificationBroadcasterSupport implements CountHi
         return countHits;
     }
 
-    @Override
     public void setCountShots(int a) {
         this.countShots = a;
     }
 
-    @Override
     public void setCountHits(int a) {
         this.countHits = a;
     }

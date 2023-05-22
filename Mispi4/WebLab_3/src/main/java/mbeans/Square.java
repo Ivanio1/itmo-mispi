@@ -16,31 +16,20 @@ public class Square implements SquareMBean {
     }
 
     @Override
-    public void clearArea() {
-        area=0;
-    }
-
-    @Override
-    public void clearRadius() {
-        r=0;
-    }
-
-    @Override
     public double getArea() {
         return area;
+    }
+
+    @Override
+    public double getR() {
+        return r;
     }
 
     public void setArea(double area) {
         this.area = area;
     }
 
-    @Override
-    public double getRadius() {
-        return r;
-    }
-
-    @Override
-    public void setRadius(double R) {
+    public void setR(double R) {
         this.r = R;
         calculateArea();
     }
