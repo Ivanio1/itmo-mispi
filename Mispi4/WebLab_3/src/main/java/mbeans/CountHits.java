@@ -30,7 +30,7 @@ public class CountHits extends NotificationBroadcasterSupport implements CountHi
                 Notification notification = new Notification("countOfMissedPointsEqualsFour",
                         this, countMisses, "Count of missed points equals 4");
                 sendNotification(notification);
-                message = "4 промаха подряд! Прицелься";
+                message = "4 misses in a row!";
                 countMisses = 0;
 
             } else message = "";

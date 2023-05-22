@@ -26,11 +26,15 @@ public class DatabaseManager {
     }
 
     public void addPoint(Point point) {
-        if (point.getX() == null || point.getY() == null || point.getR() == null || point.getResult() == null)
-            return;
-        entityManager.getTransaction().begin();
-        entityManager.persist(point);
-        entityManager.getTransaction().commit();
+        try {
+            if (point.getX() == null || point.getY() == null || point.getR() == null || point.getResult() == null)
+                return;
+            entityManager.getTransaction().begin();
+            entityManager.persist(point);
+            entityManager.getTransaction().commit();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void removeAllPoints() {

@@ -57,16 +57,16 @@
                         visibility="hidden"></circle>
             </svg>
             <div><p style="color: black">
-                Всего точек - #{pointsBean.shots} Попаданий - #{pointsBean.hits}
+                Total shots - #{pointsBean.shots} hits - #{pointsBean.hits}
             </p>
-                <p style="color: black"> Площадь фигуры - #{pointsBean.square}</p>
+                <p style="color: black"> Square - #{pointsBean.square}</p>
                 <p style="color: black">
                     #{pointsBean.message}
                 </p></div>
         </div>
 
         <div class="starter">
-            <h:link outcome="starter">#{localizationBean.startPage}</h:link>
+            <h:link outcome="starter">Go to starter page</h:link>
         </div>
 
         <div class="card">
@@ -74,13 +74,13 @@
             <div class="form">
                 <h:form id="form">
                     <div class="x-value">
-                        <p>#{localizationBean.x}</p>
+                        <p>Choose X:</p>
                         <h:inputText styleClass="my-input" style="color: black"
                                      id="x" name="x" value="#{pointsBean.pointField.x}"
-                                     a:placeholder="#{localizationBean.valueX}"
-                                     converterMessage="#{localizationBean.xNumber}"
-                                     validatorMessage="#{localizationBean.xBetween}"
-                                     required="true" requiredMessage="#{localizationBean.xRequired}" maxlength="6"
+                                     a:placeholder="Value in [-5..5]"
+                                     converterMessage="X must be number..."
+                                     validatorMessage="X must be number between -5 and 5 inclusive"
+                                     required="true" requiredMessage="X is required" maxlength="6"
                                      onkeyup="this.value = this.value.replace(/[^0-9\.\-]/g, '')">
                             <f:validateDoubleRange minimum="-5" maximum="5"/>
                         </h:inputText>
@@ -88,11 +88,11 @@
                         <div class="invalid-y d-none h5" style="color: red"></div>
                     </div>
                     <div class="y-value">
-                        <p>#{localizationBean.y}</p>
+                        <p>Choose Y:</p>
                         <h:selectOneRadio id="y"
                                           value="#{pointsBean.pointField.y}"
                                           required="true"
-                                          requiredMessage="#{localizationBean.YReq}">
+                                          requiredMessage="Y is required">
                             <f:selectItem itemValue="-5" itemLabel="-5"/>
                             <f:selectItem itemValue="-4" itemLabel="-4"/>
                             <f:selectItem itemValue="-3" itemLabel="-3"/>
@@ -107,13 +107,13 @@
 
                     </div>
                     <div class="r-value">
-                        <p>#{localizationBean.r}</p>
+                        <p>Choose R:</p>
                         <h:inputText styleClass="my-input" style="color: black"
                                      id="R-field" name="r" value="#{pointsBean.pointField.r}"
-                                     a:placeholder="#{localizationBean.valueR}"
-                                     converterMessage="#{localizationBean.rNumber}"
-                                     validatorMessage="#{localizationBean.rBetween}"
-                                     required="true" requiredMessage="#{localizationBean.rRequired}" maxlength="4"
+                                     a:placeholder="Value in [2..5]"
+                                     converterMessage="R must be number..."
+                                     validatorMessage="R must be number between 2 and 5 inclusive"
+                                     required="true" requiredMessage="R is required" maxlength="4"
                                      onkeypress="changeR()"
                                      onkeyup="this.value = this.value.replace(/[^0-9\.]/g, '')">
                             <f:validateDoubleRange minimum="2" maximum="5"/>
@@ -126,7 +126,7 @@
                     <br/>
                     <div>
 
-                        <h:commandButton styleClass="my-button" type="submit" value="#{localizationBean.submit}"
+                        <h:commandButton styleClass="my-button" type="submit" value="Submit"
                                          id="submit-button"
                                          style=""
                                          onmouseup="clickSubmitButton()" onmousedown="offset()">
@@ -152,7 +152,7 @@
                 </h:form>
                 <br/>
                 <h:form>
-                    <h:commandButton styleClass="my-button" type="submit" value="#{localizationBean.clearAll}"
+                    <h:commandButton styleClass="my-button" type="submit" value="Clear All"
                                      action="#{pointsBean.clear}">
                     </h:commandButton>
                 </h:form>
@@ -196,17 +196,17 @@
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header">#{localizationBean.result}</f:facet>
+                    <f:facet name="header">Result</f:facet>
                     ${point.result ? "Hit" : "None"}
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header" id="final_time" style="">#{localizationBean.currtime}</f:facet>
+                    <f:facet name="header" id="final_time" style="">Current time</f:facet>
                     ${pointsBean.getDateOffset(pointsBean.offset,point.curr_time)}
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header">#{localizationBean.extime}</f:facet>
+                    <f:facet name="header">Execute time(mcs)</f:facet>
                     ${point.ex_time}
                 </h:column>
             </h:dataTable>
